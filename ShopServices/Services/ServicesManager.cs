@@ -12,7 +12,7 @@ using System.Web;
 
 namespace ShopServices.Services
 {
-    public class ServicesManager
+    public class ServicesManager 
     {
         private IClothesService clothesService;
         private ICosmeticService cosmeticService;
@@ -26,7 +26,7 @@ namespace ShopServices.Services
                 if (clothesService != null) 
 					return clothesService as ClothesService;
 				clothesService = WindsorService.Resolve<IClothesService>(WindsorService.Resolve<IClothesRepository>());
-                SaveToContext();
+	            SaveToContext();
 				return clothesService as ClothesService;
             }
         }
@@ -37,7 +37,7 @@ namespace ShopServices.Services
                 if (cosmeticService != null)
 					return cosmeticService as CosmeticService;
 				cosmeticService = WindsorService.Resolve<ICosmeticService>(WindsorService.Resolve<ICosmeticRepository>());
-                SaveToContext();
+				SaveToContext();
 				return cosmeticService as CosmeticService;
             }
         }
@@ -47,7 +47,7 @@ namespace ShopServices.Services
             {
                 if (brandService != null) return brandService as BrandService;
 				brandService =  WindsorService.Resolve<IBrandService>(WindsorService.Resolve<IBrandRepository>());
-                SaveToContext();
+				SaveToContext();
                 return brandService as BrandService;
             }
         }
@@ -64,12 +64,12 @@ namespace ShopServices.Services
             {
                 get
                 {
-                    _uniqueInstance = HttpContext.Current.Items[HTTPCONTEXTKEY] as ServicesManager;
+					_uniqueInstance = HttpContextFactory.Current.Items[HTTPCONTEXTKEY] as ServicesManager;
                     if (_uniqueInstance != null) return _uniqueInstance;
                     lock (_syncRoot)
                     {
                         _uniqueInstance = new ServicesManager();
-                        HttpContext.Current.Items.Add(HTTPCONTEXTKEY, _uniqueInstance);
+						HttpContextFactory.Current.Items.Add(HTTPCONTEXTKEY, _uniqueInstance);
                     }
                     return _uniqueInstance;
                 }
@@ -77,7 +77,7 @@ namespace ShopServices.Services
 
             internal static void UpdateInstance(ServicesManager updatedFactory)
             {
-                HttpContext.Current.Items[HTTPCONTEXTKEY] = updatedFactory;
+				HttpContextFactory.Current.Items[HTTPCONTEXTKEY] = updatedFactory;
             }
         }
 
@@ -86,9 +86,10 @@ namespace ShopServices.Services
             get { return FactoryCreator.UniqueInstance; }
         }
 
-        private void SaveToContext()
+        private  void SaveToContext()
         {
-            FactoryCreator.UpdateInstance(this);
+			FactoryCreator.UpdateInstance(this);
         }
+		
     }
 }
