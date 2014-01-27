@@ -23,9 +23,6 @@ namespace ShopUI.Tests.Repositories
 	[TestClass]
 	public class RepositoryTest
 	{
-		
-
-
 		[TestMethod]
 		public void Get()
 		{
@@ -35,7 +32,7 @@ namespace ShopUI.Tests.Repositories
 			// Act
 			IEnumerable<Clothes> clothesList = fakeRepo.Get(null, q => q.OrderBy(d => d.Id)).ToList();
 			// Assert
-		
+			Assert.IsNotNull(clothesList);
 		}
 
 		[TestMethod]
@@ -75,9 +72,9 @@ namespace ShopUI.Tests.Repositories
 		
 			ClothesFakeRepository fakeRepo = new ClothesFakeRepository();
 			Clothes clothes = new Clothes();
-			clothes.Id = 35;
-			clothes.Code = "A";
-			clothes.Name = "Test";
+			clothes.Id = 25;
+			clothes.Code = "10B";
+			clothes.Name = "Fancy skirt 10";
 		
 	     	// Act
 			fakeRepo.Update(clothes);

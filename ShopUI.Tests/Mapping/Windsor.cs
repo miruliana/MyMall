@@ -9,13 +9,17 @@ namespace ShopUI.Tests.Mapping
 	[TestClass]
 	public class Windsor
 	{
+		[TestInitialize]
+		public void InstallWindsor()
+		{
+			WindsorService.Clear();
+			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
+			WindsorService.Install();
+		}
 		[TestMethod]
 		public void WindsorGetClothesRepository()
 		{
 			// Arrange
-			WindsorService.Clear();
-			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
-			WindsorService.Install();
 		
 			// Act
 			IClothesRepository clothesRepository = WindsorService.Resolve<IClothesRepository>();
@@ -29,10 +33,7 @@ namespace ShopUI.Tests.Mapping
 		public void WindsorGetCosmeticRepository()
 		{
 			// Arrange
-			WindsorService.Clear();
-			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
-			WindsorService.Install();
-
+			
 			// Act
 			ICosmeticRepository cosmeticRepository = WindsorService.Resolve<ICosmeticRepository>();
 		
@@ -46,10 +47,7 @@ namespace ShopUI.Tests.Mapping
 		public void WindsorGetBrandRepository()
 		{
 			// Arrange
-			WindsorService.Clear();
-			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
-			WindsorService.Install();
-
+			
 			// Act
 			IBrandRepository brandRepository = WindsorService.Resolve<IBrandRepository>();
 			
@@ -63,10 +61,7 @@ namespace ShopUI.Tests.Mapping
 		public void WindsorGetClothesService()
 		{
 			// Arrange
-			WindsorService.Clear();
-			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
-			WindsorService.Install();
-
+		
 			// Act
 			IClothesService clothesServiceBase = WindsorService.Resolve<IClothesService>(WindsorService.Resolve<IClothesRepository>());
 			
@@ -80,10 +75,7 @@ namespace ShopUI.Tests.Mapping
 		public void WindsorGetCosmeticService()
 		{
 			// Arrange
-			WindsorService.Clear();
-			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
-			WindsorService.Install();
-
+		
 			// Act
 			ICosmeticService cosmeticServiceBase = WindsorService.Resolve<ICosmeticService>(WindsorService.Resolve<ICosmeticRepository>());
 			
@@ -97,10 +89,7 @@ namespace ShopUI.Tests.Mapping
 		public void WindsorGetBrandService()
 		{
 			// Arrange
-			WindsorService.Clear();
-			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml");
-			WindsorService.Install();
-
+			
 			// Act
 			IBrandService brandServiceBase = WindsorService.Resolve<IBrandService>(WindsorService.Resolve<IBrandRepository>());
 
