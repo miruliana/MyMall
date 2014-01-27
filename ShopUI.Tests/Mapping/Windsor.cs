@@ -26,7 +26,7 @@ namespace ShopUI.Tests.Mapping
 			
 			// Assert
 			Assert.IsNotNull(clothesRepository);
-			Assert.AreEqual(clothesRepository.GetType().Name, "ClothesRepository");
+			Assert.IsInstanceOfType(clothesRepository, typeof(IClothesRepository));
 
 		}
 		[TestMethod]
@@ -40,7 +40,7 @@ namespace ShopUI.Tests.Mapping
 
 			// Assert
 			Assert.IsNotNull(cosmeticRepository);
-			Assert.AreEqual(cosmeticRepository.GetType().Name, "CosmeticRepository");
+			Assert.IsInstanceOfType(cosmeticRepository, typeof(ICosmeticRepository));
 
 		}
 		[TestMethod]
@@ -54,7 +54,7 @@ namespace ShopUI.Tests.Mapping
 
 			// Assert
 			Assert.IsNotNull(brandRepository);
-			Assert.AreEqual(brandRepository.GetType().Name, "BrandRepository");
+			Assert.IsInstanceOfType(brandRepository, typeof(IBrandRepository));
 
 		}
 		[TestMethod]
@@ -68,7 +68,7 @@ namespace ShopUI.Tests.Mapping
 
 			// Assert
 			Assert.IsNotNull(clothesServiceBase);
-			Assert.AreEqual(clothesServiceBase.GetType().Name, "ClothesService");
+			Assert.IsInstanceOfType(clothesServiceBase, typeof(IClothesService));
 
 		}
 		[TestMethod]
@@ -82,7 +82,7 @@ namespace ShopUI.Tests.Mapping
 
 			// Assert
 			Assert.IsNotNull(cosmeticServiceBase);
-			Assert.AreEqual(cosmeticServiceBase.GetType().Name, "CosmeticService");
+			Assert.IsInstanceOfType(cosmeticServiceBase, typeof(ICosmeticService));
 
 		}
 		[TestMethod]
@@ -95,7 +95,7 @@ namespace ShopUI.Tests.Mapping
 
 			// Assert
 			Assert.IsNotNull(brandServiceBase);
-			Assert.AreEqual(brandServiceBase.GetType().Name, "BrandService");
+			Assert.IsInstanceOfType(brandServiceBase, typeof(IBrandService));
 
 		}
 	}
