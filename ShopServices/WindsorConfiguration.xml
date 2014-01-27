@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <components>
+    <component id="clothes-service"
+              service="ShopServices.Interfaces.IClothesService, ShopServices"
+              type="ShopServices.Services.ClothesService, ShopServices">
+      <parameters>
+        <inner>${iRepoOfClothes}</inner>
+      </parameters>
+    </component>
+    <component id="cosmetic-service"
+                 service="ShopServices.Interfaces.ICosmeticService, ShopServices"
+                 type="ShopServices.Services.CosmeticService, ShopServices">
+      <parameters>
+        <inner>${iRepoOfCosmetic}</inner>
+      </parameters>
+    </component>
+    <component id="brand-service"
+                service="ShopServices.Interfaces.IBrandService, ShopServices"
+                type="ShopServices.Services.BrandService, ShopServices">
+      <parameters>
+        <inner>${iRepoOfBrand}</inner>
+      </parameters>
+    </component>
+    <component id="iRepoOfClothes" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Clothes, ShopDALModel]], ShopDALRepository"
+              type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Clothes, ShopDALModel]], ShopDALRepository">
+    </component>
+    <component id="iRepoOfCosmetic" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Cosmetic, ShopDALModel]], ShopDALRepository"
+                type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Cosmetic, ShopDALModel]], ShopDALRepository">
+    </component>
+    <component id="iRepoOfBrand" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Brand, ShopDALModel]], ShopDALRepository"
+                 type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Brand, ShopDALModel]], ShopDALRepository">
+    </component>
+
+    <component id="genericService" service="ShopServices.Interfaces.IBaseService`1, ShopServices"
+               type="ShopServices.Services.Service`1, ShopServices">
+    </component>
+    <component id="clothesFake-repository"
+             service="ShopDALRepository.Interfaces.IClothesFakeRepository, ShopDALRepository"
+             type="ShopDALRepository.Repositories.ClothesFakeRepository, ShopDALRepository"/>
+    <component id="clothes-repository"
+              service="ShopDALRepository.Interfaces.IClothesRepository, ShopDALRepository"
+              type="ShopDALRepository.Repositories.ClothesRepository, ShopDALRepository"/>
+    <component id="cosmetic-repository"
+                service="ShopDALRepository.Interfaces.ICosmeticRepository, ShopDALRepository"
+                type="ShopDALRepository.Repositories.CosmeticRepository, ShopDALRepository"/>
+    <component id="brand-repository"
+                  service="ShopDALRepository.Interfaces.IBrandRepository, ShopDALRepository"
+                  type="ShopDALRepository.Repositories.BrandRepository, ShopDALRepository"/>
+    
+   <component id="generic-repository" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDALModel.BaseModel.Entity, ShopDALModel]], ShopDALRepository"
+                type="ShopDALRepository.Repositories.Repository`1[[ShopDALModel.BaseModel.Entity, ShopDALModel]], ShopDALRepository">
+    </component>
+    <component id="shopContext"
+               service="System.Data.Entity.DbContext"
+               type="ShopDAL.Model.ShopContext, ShopDALModel"/>
+    <component id="dbSet"
+               type="System.Data.Entity.DbSet`1"/>
+    <component id="clothes" service="ShopDALModel.BaseModel.Entity, ShopDALModel"
+               type="ShopDAL.Model.Clothes, ShopDALModel"/>
+    <component id="unitOfWork" service="ShopDALRepository.Interfaces.IUnitOfWork, ShopDALRepository"
+               type="ShopDALRepository.Repositories.UnitOfWork, ShopDALRepository"/>
+    <component id="dbContext" type="System.Object"/>
+    <component id ="clothesMapper" type="ShopMapper.ClothesMapper, ShopMapper" />
+    <component id ="clothesDTO" type ="ShopDTO.ClothesDTO, ShopDTO" />
+  </components>
+</configuration>
