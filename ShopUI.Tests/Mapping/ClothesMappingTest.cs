@@ -16,7 +16,7 @@ using ShopUI;
 namespace ShopUI.Tests.Mapping
 {
 	[TestClass]
-	public class MappingTest
+	public class ClothesMappingTest
 	{
 		[TestMethod]
 		public void ClothesToClothesDtoMappingTest()
