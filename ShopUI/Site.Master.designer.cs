@@ -40,33 +40,6 @@ namespace ShopUI {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cosmeticLink;
         
         /// <summary>
-        /// destinationLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor destinationLink;
-        
-        /// <summary>
-        /// typesLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor typesLink;
-        
-        /// <summary>
-        /// categoriesLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor categoriesLink;
-        
-        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

@@ -1,4 +1,6 @@
-﻿
+﻿$(document).ready(function () {
+
+});
 function ClothesViewModel(clothes) {
     var self = this;
     self.Id = clothes.Id;
@@ -51,7 +53,8 @@ function ViewModel() {
     self.clothes = ko.observable();
     self.status = ko.observable();
     self.links = ko.observable();
-       
+    self.shouldDisplayEdit = ko.observable();
+    
 
     self.getAll = function () {
         self.clothesProducts.removeAll();
@@ -64,16 +67,15 @@ function ViewModel() {
  
     self.update = function (product) {
         self.status("");
-        var id = product.Id;
-      
+       
         $.ajax({
-            url: baseURI + 'Put/' + id,
+            url: baseURI + 'Put/' + product.Id,
             cache: false,
             type: 'PUT',
             contentType: 'application/json; charset=utf-8',
             data: ko.toJSON(product), //JSON.stringify(product),
             success: function () {
-                ToggleEditUpdate(id, false);
+                ToggleEditUpdate(product.Id, false);
                 self.getAll();
             }
         })

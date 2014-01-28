@@ -33,19 +33,17 @@ namespace ShopMapper
 			return null;
         }
 
-		public static IEnumerable<ClothesDTO> ClothesToClothesDtoList(IEnumerable<Clothes> clothes)
+		public static IQueryable<ClothesDTO> ClothesToClothesDtoList(IQueryable<Clothes> clothes)
 		{
-			List<ClothesDTO> clothesDToList = new List<ClothesDTO>();
-			foreach (var cloth in clothes)
-			{
-				if (cloth != null)
-				{
-					ClothesDTO clothesDTO = ClothesToClothesDto(cloth);
-				    clothesDToList.Add(clothesDTO);
-				}
-			}
-			
-			return clothesDToList.AsEnumerable();
+			var select = from product in clothes
+						 select new ClothesDTO
+						 {
+							 Id = product.Id,
+							 Code = product.Code,
+							 Name = product.Name,
+							 Price = product.Price
+						 };
+			return select;
 		}
     }
 }

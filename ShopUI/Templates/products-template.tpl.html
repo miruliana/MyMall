@@ -1,0 +1,11 @@
+﻿
+          <tr data-bind="attr: { 'id': Id }">                                                      
+                    <td><input type ="text" data-bind="value : Code " id ="Code" readonly class ="readonlyInline"></td>
+                    <td><input type ="text" data-bind="value : Name" id ="Name" readonly class ="readonlyInline"></td>
+                    <td><input type ="text" data-bind="value : Price" id ="Price" readonly class ="readonlyInline"></td>
+
+                    <td class ="inlineVisible" id ="edit"><a  href="#" data-bind="click: $root.edit" >Edit</a></td>
+                    <td class ="inlineHidden" id ="update"><a  href="#" data-bind="click: $root.update" >Update</a></td>
+                    <td><a href="#" data-bind="click: $root.remove">Remove</a></td>
+                                        
+            </tr>

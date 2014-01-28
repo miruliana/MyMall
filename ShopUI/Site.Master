@@ -41,9 +41,6 @@
                    <ul id="menu">
                         <li><a id="clothesLink" runat="server" href="~/">Clothes</a></li>
                         <li><a id="cosmeticLink" runat="server" href="~/Cosmetic">Cosmetic</a></li>
-                        <li><a id="destinationLink" runat="server" href="~/Destinations">Destinations</a></li>
-                        <li><a id="typesLink" runat="server" href="~/Types">Types</a></li>
-                        <li><a id="categoriesLink" runat="server" href="~/Categories">Categories</a></li>
                     </ul>
                 </nav>
             </div>
@@ -62,23 +59,11 @@
     </footer>
     </form>
       <script src="Scripts/jquery-1.7.1.js"></script>
-    <script src="Scripts/jquery-ui-1.8.20.js"></script>
+   <script src="Scripts/jquery-ui-1.8.20.js"></script>
     <script src="Scripts/knockout-2.1.0.debug.js"></script>
+    <script src="Scripts/TrafficCop.js"></script>
+    <script src="Scripts/infuser.js"></script>
+    <script src="Scripts/koExternalTemplateEngine.js"></script>
     <script src="Scripts/Products/Clothes.js"></script>    
-   <script type="text/html" id="products-template">
-          <tr data-bind="attr: { 'id': Id }">
-                   
-                    <td style="width:20px" data-bind="text: Id" id ="Id"></td>
-               
-                    <td><input type ="text" data-bind="value : Code " id ="Code" readonly class ="readonlyInline"></td>
-                    <td><input type ="text" data-bind="value : Name" id ="Name" readonly class ="readonlyInline"></td>
-                    <td><input type ="text" data-bind="value : Price" id ="Price" readonly class ="readonlyInline"></td>
-
-                    <td class ="inlineVisible" id ="edit"><a  href="#" data-bind="click: $root.edit" >Edit</a></td>
-                    <td class ="inlineHidden" id ="update"><a  href="#" data-bind="click: $root.update" >Update</a></td>
-                    <td><a href="#" data-bind="click: $root.remove">Remove</a></td>
-                                        
-            </tr>
-    </script>
 </body>
 </html>

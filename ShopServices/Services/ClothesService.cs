@@ -15,13 +15,12 @@ namespace ShopServices.Services
 {
 	public class ClothesService : Service<Clothes>, IClothesService
 	{
-		//public ClothesService(IRepository<Clothes> baseRepository, IUnitOfWork unitOfWork) : base(baseRepository, unitOfWork) { }
 		public ClothesService(IRepository<Clothes> baseRepository) : base(baseRepository) { }
       
-		public IEnumerable<ClothesDTO> GetAll()
+		public IQueryable<ClothesDTO> GetAll()
 		{
-			IEnumerable<Clothes> clothes = base.Get(null, q => q.OrderBy(d => d.Id)).ToList();
-			IEnumerable<ClothesDTO> clothesDtoList = ClothesMapper.ClothesToClothesDtoList(clothes);
+			IQueryable<Clothes> clothes = base.Get(null, q => q.OrderBy(d => d.Id));
+			IQueryable<ClothesDTO> clothesDtoList = ClothesMapper.ClothesToClothesDtoList(clothes);
 			return clothesDtoList;
             
         }

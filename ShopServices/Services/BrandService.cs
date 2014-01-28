@@ -11,9 +11,6 @@ namespace ShopServices.Services
 {
 	public class BrandService : Service<Brand>, IBrandService
 	{
-		//public BrandService(IRepository<Brand> baseRepository, IUnitOfWork unitOfWork) : base(baseRepository, unitOfWork) { }
-        public BrandService(IRepository<Brand> baseRepository) : base(baseRepository) { }
-      
-		
+		 public BrandService(IRepository<Brand> baseRepository) : base(baseRepository) { }
 	}
 }
