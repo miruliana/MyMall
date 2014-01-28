@@ -81,56 +81,113 @@ namespace ShopUI.Tests.Repositories
 		[TestMethod]
 		public void Post()
 		{
+			// Arrange
 			List<Clothes> clothes = GetClothesList();
 			Mock<IClothesRepository> mockClothesRepository = new Mock<IClothesRepository>();
 			Mock<IUnitOfWork> mockUnitOfWork = new Mock<IUnitOfWork>();
-			mockClothesRepository.Setup(mr => mr.Insert(It.IsAny<Clothes>()));
-			
-			
+			mockClothesRepository.Setup(mr => mr.Insert(It.IsAny<Clothes>())).Callback((Clothes target) =>
+			{
+					target.Id = clothes.Count() + 1;
+					clothes.Add(target);
+			});
 			mockUnitOfWork.Setup(uw => uw.Commit());
 			// Act
 			Clothes product = GetNewProduct();
 			mockClothesRepository.Object.Insert(product);
 			mockUnitOfWork.Object.Commit();
-			int productCount = mockClothesRepository.Object.Get(null, q => q.OrderBy(d => d.Id)).Count();
 		
 			// Assert
 			Assert.IsNotNull(product.Id);
 			Assert.AreNotEqual(product.Id, 0);
-			Assert.AreEqual(product.Id, (productCount + 1));
+			Assert.AreEqual(product.Id, clothes.Count());
 		}
 
 		[TestMethod]
 		public void Put()
 		{
 			// Arrange
-		
-			ClothesFakeRepository fakeRepo = new ClothesFakeRepository();
-			Clothes clothes = new Clothes();
-			clothes.Id = 25;
-			clothes.Code = "10B";
-			clothes.Name = "Fancy skirt 10";
-		
-	     	// Act
-			fakeRepo.Update(clothes);
-			fakeRepo.Commit();
-		
+			List<Clothes> clothes = GetClothesList();
+			Mock<IClothesRepository> mockClothesRepository = new Mock<IClothesRepository>();
+			Mock<IUnitOfWork> mockUnitOfWork = new Mock<IUnitOfWork>();
+			mockClothesRepository.Setup(mr => mr.Update(It.IsAny<Clothes>())).Callback((Clothes target) =>
+			{
+				var original = clothes.Where(q => q.Id == target.Id).Single();
+				original.Code = target.Code;
+				original.Name = target.Name;
+				original.Price = target.Price;
+			
+			});
+			// Act
+			Clothes product = new Clothes();
+			if (clothes.Count >= 1)
+			{
+				product.Id = 1;
+				product.Code = "AAB";
+				product.Name = "Test name";
+				product.Price = 15;
+			}
+			mockClothesRepository.Object.Update(product);
+			mockUnitOfWork.Setup(uw => uw.Commit());	 
+			
 			// Assert
+			Assert.IsNotNull(product);
+			Assert.AreEqual(clothes[0].Code, "AAB");
+			Assert.AreEqual(clothes[0].Name, "Test name");
+			Assert.AreEqual(clothes[0].Price, 15);
 		}
 
 		[TestMethod]
 		public void Delete()
 		{
 			// Arrange
-		
-			ClothesFakeRepository fakeRepo = new ClothesFakeRepository();
-		
+
+			List<Clothes> clothes = GetClothesList();
+			Mock<IClothesRepository> mockClothesRepository = new Mock<IClothesRepository>();
+			Mock<IUnitOfWork> mockUnitOfWork = new Mock<IUnitOfWork>();
+			mockClothesRepository.Setup(mr => mr.Delete(It.IsAny<Clothes>())).Callback((Clothes target) =>
+			{
+				var product = clothes.Where(q => q.Id == target.Id).Single();
+				clothes.Remove(product);
+			});
+			mockUnitOfWork.Setup(uw => uw.Commit());
+			Clothes productToDelete = new Clothes();
+			productToDelete.Id = 1;
+			productToDelete.Code = "A";
+			productToDelete.Name = "Skirt";
+			productToDelete.Price = 10.5;
 			// Act
+			mockClothesRepository.Object.Delete(productToDelete);
+			mockUnitOfWork.Setup(uw => uw.Commit());	 
 			
-			fakeRepo.Delete(44);
-			fakeRepo.Commit();
+			// Assert
+			Assert.IsFalse(clothes.Contains(productToDelete));
+		}
+
+		[TestMethod]
+		public void DeleteById()
+		{
+			// Arrange
+			List<Clothes> clothes = GetClothesList();
+			Clothes productToDelete = clothes.Where(c => (c.Id == 1)).Single();
+			Mock<IClothesRepository> mockClothesRepository = new Mock<IClothesRepository>();
+			Mock<IUnitOfWork> mockUnitOfWork = new Mock<IUnitOfWork>();
+			mockClothesRepository.Setup(mr => mr.Delete(It.IsAny<object>())).Callback((object id) =>
+			{
+				if (id is int)
+				{
+					var product = clothes.Where(q => q.Id == (int)id).Single();
+					clothes.Remove(product);
+				}
+			});
+			mockUnitOfWork.Setup(uw => uw.Commit());
+
+			// Act
+			mockClothesRepository.Object.Delete(1);
+			mockUnitOfWork.Setup(uw => uw.Commit());	 
 
 			// Assert
+
+			Assert.IsFalse(clothes.Contains(productToDelete));
 		}
 	}
 }
