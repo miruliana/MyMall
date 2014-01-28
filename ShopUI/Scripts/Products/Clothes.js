@@ -1,50 +1,24 @@
 ﻿$(document).ready(function () {
 
 });
-function ClothesViewModel(clothes) {
+function ClothesViewModel(clothes, isEdit) {
     var self = this;
     self.Id = clothes.Id;
     self.Code = clothes.Code;
     self.Name = clothes.Name;
     self.Price = clothes.Price;
+    self.shouldDisplayEdit = ko.observable(isEdit);
+
+    self.setShouldDisplayEdit = function(flag) {
+        self.shouldDisplayEdit(flag);
+    };
+    
 }
 
-function ToggleEditUpdate(id, forEdit) {
 
-       $("tr#" + id + " td ").each(function ()
-        {
-            if ($(this).attr("id") == "edit")
-            {
-                if (forEdit)
-                    $(this).removeClass('inlineVisible').addClass('inlineHidden');
-                else
-                    $(this).removeClass('inlineHidden').addClass('inlineVisible');
-     
-            }
-            if ($(this).attr("id") == "update")
-            {
-                if (forEdit)
-                    $(this).removeClass('inlineHidden').addClass('inlineVisible');
-                else
-                    $(this).removeClass('inlineVisible').addClass('inlineHidden'); 
-        
-            }
-        });
-
-    $("tr#" + id + " td input").each(function () {
-        if ($(this).attr("id") != "Id") {
-            if (forEdit) {
-                $(this).removeAttr('readonly');
-                $(this).removeClass('readonlyInline');
-            }
-            else {
-                $(this).attr('readonly', true);
-                $(this).addClass('readonlyInline');
-            }
-        }
-    });
-
-};
+function InitBindings(viewModel) {
+    viewModel.getAll();
+}
 
 function ViewModel() {
     var self = this;
@@ -53,14 +27,12 @@ function ViewModel() {
     self.clothes = ko.observable();
     self.status = ko.observable();
     self.links = ko.observable();
-    self.shouldDisplayEdit = ko.observable();
-    
 
     self.getAll = function () {
         self.clothesProducts.removeAll();
         $.getJSON(baseURI + 'Get', function (clothesProducts) {
             $.each(clothesProducts, function (index, clothes) {
-                self.clothesProducts.push(new ClothesViewModel(clothes));
+                self.clothesProducts.push(new ClothesViewModel(clothes, true));
             });
         });
     };
@@ -75,7 +47,7 @@ function ViewModel() {
             contentType: 'application/json; charset=utf-8',
             data: ko.toJSON(product), //JSON.stringify(product),
             success: function () {
-                ToggleEditUpdate(product.Id, false);
+                product.setShouldDisplayEdit(true);
                 self.getAll();
             }
         })
@@ -101,7 +73,7 @@ function ViewModel() {
             data: ko.toJSON(product),//JSON.stringify(product),
             statusCode: {
                 201 /*Created*/: function (data) {
-                    self.clothesProducts.push(new ClothesViewModel(data));
+                    self.clothesProducts.push(new ClothesViewModel(data, true));
                   
                 }
             }
@@ -136,12 +108,12 @@ function ViewModel() {
 
 
     self.edit = function(product) {
-        ToggleEditUpdate(product.Id, true);
+        product.setShouldDisplayEdit(false);
     };
 
 };
 
 
 var viewModel = new ViewModel();
-viewModel.getAll();
+InitBindings(viewModel);
 ko.applyBindings(viewModel);

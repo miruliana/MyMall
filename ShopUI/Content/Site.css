@@ -107,9 +107,7 @@ h5, h6 {
     visibility: hidden;
     display:none;
 }
-.inlineVisible {
-    visibility: visible;
-}
+
 #body {
     background-color: #efeeef;
     clear: both;
