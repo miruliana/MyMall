@@ -18,7 +18,7 @@ namespace ShopUI.Controllers
 		// GET api/<controller>
 		public IEnumerable<ClothesDTO> Get()
 		{
-		    IEnumerable<ClothesDTO> clothes = Services.ClothesService.GetAll().ToList();
+		    IEnumerable<ClothesDTO> clothes = Services.ClothesService.GetAll();
            
             if (clothes == null)
 			{

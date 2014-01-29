@@ -1,11 +1,11 @@
 ﻿
           <tr data-bind="attr: { 'id': Id }">                                                      
-              <td><input type ="text" data-bind="value : Code , enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit} " id ="Code" maxlength="10"></td>
+              <td><input type ="text" data-bind="value : Code , enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit}, valueUpdate: 'afterkeyup', returnAction:$root.update " id ="Code" maxlength="10"></td>
               <!--<span data-bind='visible: Code.hasError, text: Code.validationMessage' class="errorMessage"></span>-->
                <span data-bind="validationMessage: Code" class="errorMessage"></span>
-                    <td><input type ="text" data-bind="value : Name, enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit} " id ="Name" maxlength="255"></td>
+                    <td><input type ="text" data-bind="value : Name, enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit}, valueUpdate: 'afterkeyup', returnAction:$root.update " id ="Name" maxlength="255"></td>
               <span data-bind="validationMessage: Name" class="errorMessage"></span>
-              <td><input type ="text" data-bind=" value : Price, enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit}" id ="Price" ></td>
+              <td><input type ="text" data-bind=" value : Price, enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit}, valueUpdate: 'afterkeyup', returnAction:$root.update" id ="Price" ></td>
                <span data-bind="validationMessage: Price" class="errorMessage"></span>
             <!--  <span data-bind='visible: Price.hasError, text: Price.validationMessage' class="errorMessage"></span>-->
                     <td data-bind="visible: shouldDisplayEdit" id ="edit"><a  href="#" data-bind="click: $root.edit" >Edit</a></td>

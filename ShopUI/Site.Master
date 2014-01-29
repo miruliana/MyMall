@@ -65,6 +65,7 @@
     <script src="Scripts/infuser.js"></script>
     <script src="Scripts/koExternalTemplateEngine.js"></script>
     <script src="Scripts/knockout.validation.js"></script>
+    <script src="Scripts/Products/CustomBindings.js"></script>
     <script src="Scripts/Products/ProductFunctions.js"></script>
     <script src="Scripts/Products/Clothes.js"></script>    
 </body>
