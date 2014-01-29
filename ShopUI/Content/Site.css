@@ -94,6 +94,12 @@ h5, h6 {
 
 /* main layout
 ----------------------------------------------------------*/
+.err {
+    border: solid 1px red
+}
+.errorMessage {
+  color:  red
+}
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
