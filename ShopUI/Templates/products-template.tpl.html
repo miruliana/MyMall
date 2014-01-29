@@ -1,11 +1,12 @@
 ﻿
           <tr data-bind="attr: { 'id': Id }">                                                      
-                    <td><input type ="text" data-bind="value : Code , css: { 'readonlyInline': shouldDisplayEdit}" id ="Code" ></td>
-                    <td><input type ="text" data-bind="value : Name, css: { 'readonlyInline': shouldDisplayEdit}" id ="Name" ></td>
-                    <td><input type ="text" data-bind="value : Price, css: { 'readonlyInline': shouldDisplayEdit}" id ="Price" ></td>
+                    <td><input type ="text" data-bind="value : Code , enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit} " id ="Code" ></td>
+                    <td><input type ="text" data-bind="value : Name, enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit} " id ="Name" ></td>
+                    <td><input type ="text" data-bind="value : Price, enable : !shouldDisplayEdit(), css: { 'readonlyInline': shouldDisplayEdit}" id ="Price" ></td>
 
-                    <td data-bind="css: { 'inlineHidden': !shouldDisplayEdit()}" id ="edit"><a  href="#" data-bind="click: $root.edit" >Edit</a></td>
-                    <td data-bind="css: { 'inlineHidden': shouldDisplayEdit}" id ="update"><a  href="#" data-bind="click: $root.update" >Update</a></td>
+                    <td data-bind="visible: shouldDisplayEdit" id ="edit"><a  href="#" data-bind="click: $root.edit" >Edit</a></td>
+                    <td data-bind="visible: !shouldDisplayEdit()" id ="update"><a  href="#" data-bind="click: $root.update" >Update</a></td>
+                    <td data-bind="visible: !shouldDisplayEdit()" id ="cancel"><a  href="#" data-bind="click: $root.cancel" >Cancel</a></td>
                     <td><a href="#" data-bind="click: $root.remove">Remove</a></td>
                                         
             </tr>

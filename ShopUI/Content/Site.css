@@ -101,6 +101,7 @@ h5, h6 {
 .readonlyInline{
     border: 0px;
     background-color: #efeeef;
+    color: #000000;
     }
 
 .inlineHidden {

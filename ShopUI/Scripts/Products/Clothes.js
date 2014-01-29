@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
 });
+
 function ClothesViewModel(clothes, isEdit) {
     var self = this;
     self.Id = clothes.Id;
@@ -27,6 +28,7 @@ function ViewModel() {
     self.clothes = ko.observable();
     self.status = ko.observable();
     self.links = ko.observable();
+    self.oldProduct = undefined;
 
     self.getAll = function () {
         self.clothesProducts.removeAll();
@@ -36,7 +38,7 @@ function ViewModel() {
             });
         });
     };
- 
+    
     self.update = function (product) {
         self.status("");
        
@@ -107,9 +109,20 @@ function ViewModel() {
     };
 
 
-    self.edit = function(product) {
+    self.edit = function (product) {
+        self.oldProduct = jQuery.extend({}, product);
         product.setShouldDisplayEdit(false);
     };
+    
+    self.cancel = function (product) {
+        if (self.oldProduct != undefined) {
+            product.Code = self.oldProduct.Code;
+            product.Name = self.oldProduct.Name;
+            product.Price = self.oldProduct.Price;
+        }
+        product.setShouldDisplayEdit(true);
+    };
+
 
 };
 
