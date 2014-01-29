@@ -237,6 +237,7 @@
     <Content Include="Scripts\koExternalTemplateEngine.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\Products\Clothes.js" />
+    <Content Include="Scripts\Products\ClothesOld.js" />
     <Content Include="Scripts\Products\CustomBindings.js" />
     <Content Include="Scripts\Products\ProductFunctions.js" />
     <Content Include="Scripts\TrafficCop-amd.js" />

@@ -21,16 +21,13 @@ function ClothesViewModel(clothes, isEdit) {
     self.Code = ko.observable(clothes ? clothes.Code : '').extend({ required: true, maxLength: 10, minLength: 2 });
     self.Name = ko.observable(clothes ? clothes.Name : '').extend({ required: false, maxLength: 255, minLength: 0 });
     self.Price = ko.observable(clothes ? clothes.Price : '').extend({ mustBeNumberOrDecimal: true });
-   
+
     self.shouldDisplayEdit = ko.observable(isEdit);
 
-    self.setShouldDisplayEdit = function(flag) {
+    self.setShouldDisplayEdit = function (flag) {
         self.shouldDisplayEdit(flag);
     };
-    self.setValidation = function (flag) {
-        if (self.Price != undefined)
-        self.Price.isModified = flag;
-    };
+   
 }
 
 
@@ -45,7 +42,7 @@ function ViewModel() {
     self.clothes = ko.observable();
     self.status = ko.observable();
     self.links = ko.observable();
-   
+
 
     self.getAll = function () {
         self.clothesProducts.removeAll();
@@ -55,30 +52,29 @@ function ViewModel() {
             });
         });
     };
-    
+
     self.update = function (product) {
         self.status("");
         var clothesErrors = ko.validation.group(product, { deep: true });
         if (clothesErrors().length > 0) {
-            
             return;
         }
         $.ajax({
-                url: baseURI + 'Put/' + product.Id,
-                cache: false,
-                type: 'PUT',
-                contentType: 'application/json; charset=utf-8',
-                data: ko.toJSON(product), //JSON.stringify(product),
-                success: function() {
-                    product.setShouldDisplayEdit(true);
-                    self.getAll();
-                }
-            })
+            url: baseURI + 'Put/' + product.Id,
+            cache: false,
+            type: 'PUT',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON(product), //JSON.stringify(product),
+            success: function () {
+                product.setShouldDisplayEdit(true);
+                self.getAll();
+            }
+        })
                 .fail(
-                    function(xhr, textStatus, err) {
+                    function (xhr, textStatus, err) {
                         self.status(err);
                     });
-        
+
     };
 
     self.create = function () {
@@ -92,7 +88,7 @@ function ViewModel() {
             alert("Please add all fields correctly!");
             return;
         }
-        
+
         $.ajax({
             url: baseURI + 'Post',
             cache: false,
@@ -102,13 +98,13 @@ function ViewModel() {
             statusCode: {
                 201 /*Created*/: function (data) {
                     self.clothesProducts.push(new ClothesViewModel(data, true));
-                  
+
                 }
             }
         })
             .fail(
                 function (xhr, textStatus, err) {
-                    self.status(err);                    
+                    self.status(err);
                 });
     };
 
@@ -130,7 +126,7 @@ function ViewModel() {
         })
         .fail(
                function (xhr, textStatus, err) {
-                   self.status(err);                  
+                   self.status(err);
                });
     };
 
@@ -143,19 +139,20 @@ function ViewModel() {
         };
         product.setShouldDisplayEdit(false);
     };
-    
+
     self.cancel = function (product) {
         if (self.oldProduct != undefined) {
-            product.Code = self.oldProduct.Code;
-            product.Name = self.oldProduct.Name;
-            product.Price = self.oldProduct.Price;
+                if (self.oldProduct.Code != undefined)
+                    product.Code(self.oldProduct.Code);
+                if (self.oldProduct.Name != undefined)
+                    product.Name(self.oldProduct.Name);
+                if (self.oldProduct.Price != undefined)
+                    product.Price(self.oldProduct.Price);
         }
         product.setShouldDisplayEdit(true);
-        product.setValidation(false);
-        var clothesErr = ko.validation.group(product, { deep: false });
-        clothesErr.showAllMessages(true);
-    };
     
+    };
+
 };
 
 

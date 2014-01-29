@@ -15,9 +15,3 @@ function TestValidDecimal(val, flag) {
     }
     return true;
 }
-
-function copy(source, destination) {
-    destination.Code = source.Code;
-    destination.Name = source.Name;
-    destination.Price = source.Price;
-}
