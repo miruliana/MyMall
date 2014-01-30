@@ -17,7 +17,7 @@ namespace ShopServices.Services
         private IClothesService clothesService;
         private ICosmeticService cosmeticService;
         private IBrandService brandService;
-
+	    private ICategoryService categoryService;
 
         public ClothesService ClothesService
         {
@@ -51,7 +51,16 @@ namespace ShopServices.Services
                 return brandService as BrandService;
             }
         }
-       
+		public CategoryService CategoryService
+		{
+			get
+			{
+				if (categoryService != null) return categoryService as CategoryService;
+				categoryService = WindsorService.Resolve<ICategoryService>(WindsorService.Resolve<ICategoryService>());
+				SaveToContext();
+				return categoryService as CategoryService;
+			}
+		}
 
         // nested class used for lazy initialization
         private class FactoryCreator

@@ -42,7 +42,8 @@ namespace ShopMapper
 							 Code = product.Code,
 							 Name = product.Name,
 							 Price = product.Price,
-							 BrandId = product.BrandId
+							 BrandId = product.BrandId,
+							 CategoryId = product.CategoryId
 						 };
 			return select;
 		}

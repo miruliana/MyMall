@@ -14,6 +14,7 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Brand</th>
+                    <th>Category</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -28,6 +29,9 @@
                     <td><input type="text" title="Price" id="price2" /></td>
                     <td>
                            <input data-bind="autoComplete: brands, value: myBrandSelectedOption, optionsText: 'Name', optionsValue: 'Id', autoCompleteOptions: {autoFocus: false}" id = "brand2" /> 
+                    </td>
+                     <td>
+                           <input data-bind="autoComplete: categories, value: myCategorySelectedOption, optionsText: 'Name', optionsValue: 'Id', autoCompleteOptions: {autoFocus: false}" id = "category2" /> 
                     </td>
                     <td><a href="#" data-bind="click: create">Add</a></td>
                     <td>

@@ -316,6 +316,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BrandsApiController.cs" />
     <Compile Include="Controllers\ClothesApiController.cs" />
+    <Compile Include="Controllers\CategoryApiController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

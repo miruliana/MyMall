@@ -22,6 +22,13 @@
         <inner>${iRepoOfBrand}</inner>
       </parameters>
     </component>
+    <component id="category-service"
+               service="ShopServices.Interfaces.ICategoryService, ShopServices"
+               type="ShopServices.Services.CategoryService, ShopServices">
+      <parameters>
+        <inner>${iRepoOfCategory}</inner>
+      </parameters>
+    </component>
     <component id="iRepoOfClothes" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Clothes, ShopDALModel]], ShopDALRepository"
               type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Clothes, ShopDALModel]], ShopDALRepository">
     </component>
@@ -31,7 +38,9 @@
     <component id="iRepoOfBrand" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Brand, ShopDALModel]], ShopDALRepository"
                  type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Brand, ShopDALModel]], ShopDALRepository">
     </component>
-
+    <component id="iRepoOfCategory" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Category, ShopDALModel]], ShopDALRepository"
+                 type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Category, ShopDALModel]], ShopDALRepository">
+    </component>
     <component id="genericService" service="ShopServices.Interfaces.IBaseService`1, ShopServices"
                type="ShopServices.Services.Service`1, ShopServices">
     </component>
@@ -47,6 +56,9 @@
     <component id="brand-repository"
                   service="ShopDALRepository.Interfaces.IBrandRepository, ShopDALRepository"
                   type="ShopDALRepository.Repositories.BrandRepository, ShopDALRepository"/>
+    <component id="category-repository"
+                 service="ShopDALRepository.Interfaces.ICategoryRepository, ShopDALRepository"
+                 type="ShopDALRepository.Repositories.CategoryRepository, ShopDALRepository"/>
     
    <component id="generic-repository" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDALModel.BaseModel.Entity, ShopDALModel]], ShopDALRepository"
                 type="ShopDALRepository.Repositories.Repository`1[[ShopDALModel.BaseModel.Entity, ShopDALModel]], ShopDALRepository">

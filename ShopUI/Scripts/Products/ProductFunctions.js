@@ -1,5 +1,5 @@
 ﻿
-function isValidProduct(code, name, price, brandId, message) {
+function isValidProduct(code, name, price, brandId, categoryId, message) {
     if (code.length < 2) {
         message.val = "Code must be at least 2 characters!";
         return false;
@@ -11,6 +11,10 @@ function isValidProduct(code, name, price, brandId, message) {
     }
     if (brandId == "") {
         message.val = "Brand is mandatory!";
+        return false;
+    }
+    if (categoryId == "") {
+        message.val = "Category is mandatory!";
         return false;
     }
     return true;

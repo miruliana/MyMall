@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrandMapper.cs" />
+    <Compile Include="CategoriesMapper.cs" />
     <Compile Include="ClothesMapper.cs" />
     <Compile Include="CosmeticMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

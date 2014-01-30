@@ -103,6 +103,7 @@ h5, h6 {
 .readonlyInline{
     border: 0px;
     background-color: #efeeef;
+    color: black;
     }
 
 .inlineHidden {
@@ -743,4 +744,19 @@ tr.pager td {
             margin: 0;
         }
 }
-/* END: Mobile Styles */*/*/
+.hidenSelect {
+    outline : none;
+    overflow : hidden;
+    text-indent : 0.01px;
+    -ms-appearance: none;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: clip;
+    width: 150px;
+    color: black;
+    background-color: #efeeef;
+    border: none;
+}
+/* END: Mobile Styles */

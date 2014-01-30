@@ -38,7 +38,8 @@ function ProductsViewModel(product, isEdit) {
     self.Code = ko.observable(product ? product.Code : '').extend({ required: true, maxLength: 10, minLength: 2 });
     self.Name = ko.observable(product ? product.Name : '').extend({ required: false, maxLength: 255, minLength: 0 });
     self.Price = ko.observable(product ? product.Price : '').extend({ mustBeNumberOrDecimal: true });
-    self.BrandId = ko.observable(product ? product.BrandId : '').extend({ required: true});
+    self.BrandId = ko.observable(product ? product.BrandId : '').extend({ required: true });
+    self.CategoryId = ko.observable(product ? product.CategoryId : '').extend({ required: true });
     self.shouldDisplayEdit = ko.observable(isEdit);
 
     self.setShouldDisplayEdit = function (flag) {
@@ -50,6 +51,7 @@ function ProductsViewModel(product, isEdit) {
 function InitBindings(viewModel) {
     viewModel.getAll();
     viewModel.getAllBrands();
+    viewModel.getAllCategories();
 }
 
 function ViewModel() {
@@ -66,7 +68,7 @@ function ViewModel() {
     self.categories = ko.observableArray();
     self.destinations = ko.observableArray();
     self.myBrandSelectedOption = ko.observable();
-    
+    self.myCategorySelectedOption = ko.observable();
    
     self.resetProduct = function(product) {
         $.ajax({
@@ -79,6 +81,7 @@ function ViewModel() {
                 product.Name(data.Name);
                 product.Price(data.Price);
                 product.BrandId(data.BrandId);
+                product.CategoryId(data.CategoryId);
             }
         })
        .fail(
@@ -105,7 +108,7 @@ function ViewModel() {
     };
   
 
-    self.getCategories = function () {
+    self.getAllCategories = function () {
         self.categories.removeAll();
         $.getJSON(baseCategoryURI + 'Get', function (categories) {
             $.each(categories, function (index, value) {
@@ -137,7 +140,7 @@ function ViewModel() {
             data: ko.toJSON(product), //JSON.stringify(product),
             success: function () {
                 product.setShouldDisplayEdit(true);
-                self.getAll();
+             //   self.getAll();
             }
         })
                 .fail(
@@ -153,10 +156,12 @@ function ViewModel() {
             Code: $('#code2').val(),
             Name: $('#name2').val(),
             Price: $('#price2').val(),
-            BrandId : $('#brand2').val()
+            BrandId: $('#brand2').val(),
+            CategoryId: $('#category2').val()
+            
         };
         var message = {val : ""};
-        if (!isValidProduct(product.Code, product.Name, product.Price, product.BrandId, message)) {
+        if (!isValidProduct(product.Code, product.Name, product.Price, product.BrandId, product.CategoryId, message)) {
             alert(message.val);
             return;
         }
@@ -262,9 +267,10 @@ ko.bindingHandlers.autoComplete = {
         var valueProp = unwrap(binding.optionsValue);
         var labelProp = unwrap(binding.optionsText) || valueProp;
         var displayId = $(element).attr('id') + '-display';
+        var name = $(element).attr('name');
         var index = context.$index;
         if (index != undefined)
-            displayId = index._latestValue + '-display';
+            displayId = name + "_" + index._latestValue + '-display';
        
         var displayElement;
         var options = {};
@@ -364,9 +370,10 @@ ko.bindingHandlers.autoComplete = {
         var valueProp = unwrap(binding.optionsValue);
         var labelProp = unwrap(binding.optionsText) || valueProp;
         var displayId = $(element).attr('id') + '-display';
+        var name = $(element).attr('name');
         var index = context.$index;
         if (index != undefined)
-            displayId = index._latestValue + '-display';
+            displayId = name + "_" +  index._latestValue + '-display';
         
         
         var displayElement = $('#' + displayId);
