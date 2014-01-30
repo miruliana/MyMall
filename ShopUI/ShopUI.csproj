@@ -148,6 +148,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -237,7 +238,6 @@
     <Content Include="Scripts\koExternalTemplateEngine.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\Products\Clothes.js" />
-    <Content Include="Scripts\Products\ClothesOld.js" />
     <Content Include="Scripts\Products\CustomBindings.js" />
     <Content Include="Scripts\Products\ProductFunctions.js" />
     <Content Include="Scripts\TrafficCop-amd.js" />
@@ -314,6 +314,7 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BrandsApiController.cs" />
     <Compile Include="Controllers\ClothesApiController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

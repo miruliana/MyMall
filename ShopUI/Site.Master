@@ -40,7 +40,7 @@
                 <nav>
                    <ul id="menu">
                         <li><a id="clothesLink" runat="server" href="~/">Clothes</a></li>
-                        <li><a id="cosmeticLink" runat="server" href="~/Cosmetic">Cosmetic</a></li>
+                      <%--  <li><a id="cosmeticLink" runat="server" href="~/Cosmetic">Cosmetic</a></li>--%>
                     </ul>
                 </nav>
             </div>

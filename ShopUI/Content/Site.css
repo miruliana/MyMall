@@ -93,13 +93,9 @@ h5, h6 {
     }
 
 /* main layout
+
 ----------------------------------------------------------*/
-.err {
-    border: solid 1px red
-}
-.errorMessage {
-  color:  red
-}
+
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
@@ -107,14 +103,15 @@ h5, h6 {
 .readonlyInline{
     border: 0px;
     background-color: #efeeef;
-    color: #000000;
     }
 
 .inlineHidden {
     visibility: hidden;
     display:none;
 }
-
+.inlineVisible {
+    visibility: visible;
+}
 #body {
     background-color: #efeeef;
     clear: both;
@@ -476,11 +473,15 @@ fieldset {
     font-weight: bold;
     margin: 20px 0 10px 0;
 }
-
+.err {
+    border: 1px solid red;
+}
 .error {
     color: #e80c4d;
 }
-
+.errorMessage {
+    color: red;
+}
 /* styles for validation helpers */
 .field-validation-error {
     color: #e80c4d;

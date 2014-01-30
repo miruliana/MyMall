@@ -12,9 +12,9 @@ namespace ShopDAL.Model
     using System;
     using System.Collections.Generic;
 	using ShopDALModel.BaseModel;
-    
-    public partial class Brand : HashValues
+
+	public partial class Brand : HashValues
     {
-       
+		
     }
 }

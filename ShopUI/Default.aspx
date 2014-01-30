@@ -13,6 +13,7 @@
                     <th>Code</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Brand</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -25,8 +26,13 @@
                     <td><input type="text" title="Code" id="code2" maxlength="10" /></td>
                     <td><input type="text" title="Name" id="name2"  maxlength="255"/></td>
                     <td><input type="text" title="Price" id="price2" /></td>
+                    <td>
+                           <input data-bind="autoComplete: brands, value: myBrandSelectedOption, optionsText: 'Name', optionsValue: 'Id', autoCompleteOptions: {autoFocus: false}" id = "brand2" /> 
+                    </td>
                     <td><a href="#" data-bind="click: create">Add</a></td>
-                    <td></td>
+                    <td>
+                      
+                    </td>
                     <td></td>
                </tr>
         </table>

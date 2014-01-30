@@ -5,10 +5,8 @@ using System.Text;
 
 namespace ShopDTO
 {
-	public class BrandDTO 
+	public class BrandDTO : HashValuesDTO
 	{
-		public int Id { get; set; }
-		public string Name { get; set; }
-		public List<ProductDTO> Products { get; set; }
+		
 	}
 }

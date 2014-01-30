@@ -47,6 +47,7 @@
     <Compile Include="ClothesDTO.cs" />
     <Compile Include="CosmeticDTO.cs" />
     <Compile Include="DestinationDTO.cs" />
+    <Compile Include="HashValuesDTO.cs" />
     <Compile Include="ITransferable.cs" />
     <Compile Include="ProductDTO.cs" />
     <Compile Include="ProductTypesDTO.cs" />

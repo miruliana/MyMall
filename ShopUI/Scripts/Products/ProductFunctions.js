@@ -1,9 +1,18 @@
 ﻿
-function isValidProduct(code, name, price) {
-    if (code.length < 2)
+function isValidProduct(code, name, price, brandId, message) {
+    if (code.length < 2) {
+        message.val = "Code must be at least 2 characters!";
         return false;
-    if (!TestValidDecimal(price, true))
+    }
+        
+    if (!TestValidDecimal(price, true)) {
+        message.val = "Price must be a decimal number!";
         return false;
+    }
+    if (brandId == "") {
+        message.val = "Brand is mandatory!";
+        return false;
+    }
     return true;
 }
 

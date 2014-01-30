@@ -9,7 +9,7 @@ namespace ShopDTO
 	{
 		public int Id { get; set; }
 		//public int SizeId { get; set; }
-		//public int BrandId { get; set; }
+		public int BrandId { get; set; }
 		//public int DestinationId { get; set; }
 		//public int ColourId { get; set; }
 		public string Code { get; set; }

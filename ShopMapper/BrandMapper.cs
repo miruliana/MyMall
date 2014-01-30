@@ -32,5 +32,16 @@ namespace ShopMapper
 			}
 			return null;
 		}
+		public static IQueryable<BrandDTO> BrandToBrandDtoList(IQueryable<Brand> brands)
+		{
+			var select = from brand in brands
+						 select new BrandDTO
+						 {
+							 Id = brand.Id,
+							 Name = brand.Name
+						 };
+			return select;
+		}
+
 	}
 }

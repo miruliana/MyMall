@@ -9,10 +9,11 @@
 
 namespace ShopDAL.Model
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
+	using System;
+	using System.Data.Entity;
+	using System.Data.Entity.Infrastructure;
 	using System.Data.Entity.ModelConfiguration.Conventions;
+	using ShopDALModel.Model;
 	using ShopHelpers;
     
     public partial class ShopContext : DbContext
@@ -27,15 +28,19 @@ namespace ShopDAL.Model
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+			
 		}
 
 		public DbSet<Clothes> Clothes { get; set; }
         public DbSet<Cosmetic> Cosmetic { get; set; }
-        public DbSet<Brand> Brands { get; set; }
-        public DbSet<Category> Categories { get; set; }
+		public DbSet<Brand> Brands { get; set; }
+		public DbSet<Category> Categories { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Destination> Destinations { get; set; }
-	    public DbSet<Colour> Colours { get; set; }
+		public DbSet<Colour> Colours { get; set; }
 		public DbSet<ProductType> ProductTypes { get; set; }
+		public DbSet<CosmeticBrand> CosmeticBrand { get; set; }
+		public DbSet<CosmeticCategory> CosmeticCategory { get; set; }
+
     }
 }

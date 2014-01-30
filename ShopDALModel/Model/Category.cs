@@ -12,8 +12,8 @@ namespace ShopDAL.Model
     using System;
     using System.Collections.Generic;
 	using ShopDALModel.BaseModel;
-    
-    public partial class Category : HashValues
+
+	public partial class Category : HashValues
     {
       
     }

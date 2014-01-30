@@ -68,12 +68,18 @@
     <Compile Include="Migrations\201401221131193_v2.Designer.cs">
       <DependentUpon>201401221131193_v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401291625210_v4.cs" />
+    <Compile Include="Migrations\201401291625210_v4.Designer.cs">
+      <DependentUpon>201401291625210_v4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Brand.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Clothes.cs" />
     <Compile Include="Model\Colour.cs" />
     <Compile Include="Model\Cosmetic.cs" />
+    <Compile Include="Model\CosmeticBrand.cs" />
+    <Compile Include="Model\CosmeticCategory.cs" />
     <Compile Include="Model\Destination.cs" />
     <Compile Include="Model\ProductType.cs" />
     <Compile Include="Model\ShopContext.cs" />
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401221131193_v2.resx">
       <DependentUpon>201401221131193_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401291625210_v4.resx">
+      <DependentUpon>201401291625210_v4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

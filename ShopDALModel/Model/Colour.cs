@@ -13,8 +13,8 @@ namespace ShopDAL.Model
     using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations.Schema;
 	using ShopDALModel.BaseModel;
-    
-    public partial class Colour : HashValues
+
+	public partial class Colour : HashValues
     {
 		[Column("Value")]
         public new string Name { get; set; }

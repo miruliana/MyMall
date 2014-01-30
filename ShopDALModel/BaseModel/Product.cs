@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ShopDALModel.BaseModel
 {
     using System;
@@ -18,7 +21,9 @@ namespace ShopDALModel.BaseModel
         public int BrandId { get; set; }
         public int DestinationId { get; set; }
         public int ColourId { get; set; }
+		[MaxLength(10), MinLength(2)] 
         public string Code { get; set; }
+		[MaxLength(255), MinLength(0)] 
 		public string Name { get; set; }
         public double Price { get; set; }
 	    public int CategoryId { get; set; }
