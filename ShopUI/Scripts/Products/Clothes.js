@@ -5,7 +5,7 @@
 ko.validation.init({
     decorateElement: true,
     errorElementClass: 'err',
-    insertMessages: true,
+    insertMessages: false,
     messageTemplate: 'myCustomTemplate'
 });
 
@@ -70,7 +70,8 @@ function ViewModel() {
     self.destinations = ko.observableArray();
     self.myBrandSelectedOption = ko.observable();
     self.myCategorySelectedOption = ko.observable();
-   
+    self.errorMessage = ko.observable("");
+    
     self.resetProduct = function(product) {
         $.ajax({
             url: baseURI + 'GetById/' + product.Id,
@@ -92,6 +93,7 @@ function ViewModel() {
     };
 
     self.getAll = function () {
+        self.errorMessage("");
         self.clothesProducts.removeAll();
         $.getJSON(baseURI + 'Get', function (clothesProducts) {
             $.each(clothesProducts, function (index, clothes) {
@@ -133,6 +135,7 @@ function ViewModel() {
         if (clothesErrors().length > 0) {
             return;
         }
+        self.errorMessage("");
         $.ajax({
             url: baseURI + 'Put/' + product.Id,
             cache: false,
@@ -163,10 +166,10 @@ function ViewModel() {
         };
         var message = {val : ""};
         if (!isValidProduct(product.Code, product.Name, product.Price, product.BrandId, product.CategoryId, message)) {
-            alert(message.val);
+            self.errorMessage(message.val);
             return;
         }
-
+        self.errorMessage("");
         $.ajax({
             url: baseURI + 'Post',
             cache: false,
@@ -190,6 +193,7 @@ function ViewModel() {
 
     self.remove = function (product) {
         self.status("");
+        self.errorMessage("");
         var id = product.Id;
         $.ajax({
             url: baseURI + 'Delete/' + id,
@@ -210,14 +214,29 @@ function ViewModel() {
 
 
     self.edit = function (product) {
-      
+        self.errorMessage("");
         product.setShouldDisplayEdit(false);
     };
 
     self.cancel = function (product) {
+        self.errorMessage("");
         self.resetProduct(product);
         product.setShouldDisplayEdit(true);
     
+    };
+
+    self.getErrorMessage = function (product) {
+        var messagesArray = "";
+        var clothesErrors = ko.validation.group(product, { deep: true });
+        if (clothesErrors != undefined && clothesErrors._latestValue != undefined) {
+            ko.utils.arrayForEach(clothesErrors._latestValue, function (value) {
+                if (value._latestValue!= undefined)
+                    messagesArray =  messagesArray  + "\n" + value._latestValue;
+            
+            });
+        }
+        self.errorMessage(messagesArray);
+     
     };
 
 };

@@ -4,7 +4,7 @@
     <h3>Clothes Management:</h3>
     <div id ="viewTab">
         <div>
-        <label id ="status" data-bind="text: status" hidden="hidden" ></label></div>
+        <p id ="status" class="errorMessage"  data-bind="text: errorMessage"></p></div>
       
           <table id="clothesProducts">
           
