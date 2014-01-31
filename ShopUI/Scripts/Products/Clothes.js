@@ -267,10 +267,9 @@ ko.bindingHandlers.autoComplete = {
         var valueProp = unwrap(binding.optionsValue);
         var labelProp = unwrap(binding.optionsText) || valueProp;
         var displayId = $(element).attr('id') + '-display';
-        var name = $(element).attr('name');
         var index = context.$index;
         if (index != undefined)
-            displayId = name + "_" + index._latestValue + '-display';
+            displayId = $(element).attr('id') + "_" + index._latestValue + '-display';
        
         var displayElement;
         var options = {};
@@ -370,10 +369,9 @@ ko.bindingHandlers.autoComplete = {
         var valueProp = unwrap(binding.optionsValue);
         var labelProp = unwrap(binding.optionsText) || valueProp;
         var displayId = $(element).attr('id') + '-display';
-        var name = $(element).attr('name');
         var index = context.$index;
         if (index != undefined)
-            displayId = name + "_" +  index._latestValue + '-display';
+            displayId = $(element).attr('id') + "_" + index._latestValue + '-display';
         
         
         var displayElement = $('#' + displayId);
