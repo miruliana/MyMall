@@ -5,7 +5,8 @@
 ko.validation.init({
     decorateElement: true,
     errorElementClass: 'err',
-    insertMessages: false
+    insertMessages: true,
+    messageTemplate: 'myCustomTemplate'
 });
 
 ko.validation.rules['mustBeNumberOrDecimal'] = {
