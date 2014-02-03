@@ -71,7 +71,21 @@ function ViewModel() {
     self.myBrandSelectedOption = ko.observable();
     self.myCategorySelectedOption = ko.observable();
     self.errorMessage = ko.observable("");
-    
+    //pagination
+    self.currentPage = ko.observable();
+    self.pageSize = ko.observable(10);
+    self.currentPageIndex = ko.observable(0);
+    self.resultData = ko.observable();
+    self.topTweets = ko.observable();
+
+    self.resetAddInput = function() {
+        $('#code2').val("");
+        $('#name2').val("");
+        $('#price2').val("");
+        self.myBrandSelectedOption("");
+        self.myCategorySelectedOption("");
+        
+    };
     self.resetProduct = function(product) {
         $.ajax({
             url: baseURI + 'GetById/' + product.Id,
@@ -96,11 +110,14 @@ function ViewModel() {
         self.errorMessage("");
         self.clothesProducts.removeAll();
         $.getJSON(baseURI + 'Get', function (clothesProducts) {
+            
             $.each(clothesProducts, function (index, clothes) {
                 self.clothesProducts.push(new ProductsViewModel(clothes, true));
             });
+         
         });
     };
+   
     self.getAllBrands = function () {
         self.brands.removeAll();
         $.getJSON(baseBrandsURI + 'Get', function (brands) {
@@ -179,8 +196,10 @@ function ViewModel() {
             statusCode: {
                 201 /*Created*/: function (data) {
                     self.clothesProducts.push(new ProductsViewModel(data, true));
-
+                    self.resetAddInput();
+                    
                 }
+              
             }
         })
             .fail(
@@ -238,9 +257,36 @@ function ViewModel() {
         self.errorMessage(messagesArray);
      
     };
+    
+    self.currentPage = ko.computed(function () {
+        if (self.clothesProducts() != undefined) {
+            var pagesize = parseInt(self.pageSize(), 10),
+                startIndex = pagesize * self.currentPageIndex(),
+                endIndex = startIndex + pagesize;
+            self.topTweets(self.clothesProducts().slice(startIndex, endIndex));
+        }
 
+    });
+    
+    self.nextPage = function () {
+        if (self.clothesProducts() != undefined) {
+            if (((self.currentPageIndex() + 1) * self.pageSize()) < self.clothesProducts().length) {
+                self.currentPageIndex(self.currentPageIndex() + 1);
+            } else {
+                self.currentPageIndex(0);
+            }
+        }
+    };
+    self.previousPage = function () {
+        if (self.clothesProducts() != undefined) {
+            if (self.currentPageIndex() > 0) {
+                self.currentPageIndex(self.currentPageIndex() - 1);
+            } else {
+                self.currentPageIndex((Math.ceil(self.clothesProducts().length / self.pageSize())) - 1);
+            }
+        }
+    };
 };
-
 
 var viewModel = new ViewModel();
 ko.bindingHandlers.returnAction = {
@@ -288,8 +334,9 @@ ko.bindingHandlers.autoComplete = {
         var labelProp = unwrap(binding.optionsText) || valueProp;
         var displayId = $(element).attr('id') + '-display';
         var index = context.$index;
+        var pageIndex = context.$root.currentPageIndex();
         if (index != undefined)
-            displayId = $(element).attr('id') + "_" + index._latestValue + '-display';
+            displayId = $(element).attr('id') + "_" + pageIndex + "_" + index._latestValue + '-display';
        
         var displayElement;
         var options = {};
@@ -390,8 +437,9 @@ ko.bindingHandlers.autoComplete = {
         var labelProp = unwrap(binding.optionsText) || valueProp;
         var displayId = $(element).attr('id') + '-display';
         var index = context.$index;
+        var pageIndex = context.$root.currentPageIndex();
         if (index != undefined)
-            displayId = $(element).attr('id') + "_" + index._latestValue + '-display';
+            displayId = $(element).attr('id') + "_" + pageIndex + "_" + index._latestValue + '-display';
         
         
         var displayElement = $('#' + displayId);
@@ -407,6 +455,8 @@ ko.bindingHandlers.autoComplete = {
                 var displayText = labelProp ? unwrap(selectedItem[labelProp]) : unwrap(selectedItem).toString();
                 displayElement.val(displayText);
             }
+            else
+                displayElement.val("");
         }
     }
 };

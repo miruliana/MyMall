@@ -18,9 +18,9 @@ namespace ShopUI.Controllers
 		// GET api/<controller>
 		public IEnumerable<ClothesDTO> Get()
 		{
-		    IEnumerable<ClothesDTO> clothes = Services.ClothesService.GetAll();
-           
-            if (clothes == null)
+			IEnumerable<ClothesDTO> clothes = Services.ClothesService.GetAll();
+
+			if (clothes == null)
 			{
 				throw new HttpResponseException(HttpStatusCode.NotFound);
 			}
