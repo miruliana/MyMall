@@ -23,9 +23,9 @@
             </tbody>  
                <tfoot>
                 <tr>
-                  <td colspan="8" class="inline"><button data-bind="click: $root.previousPage, disable : (currentPageIndex() == 0)"><</button>
+                  <td colspan="8"><p class="centered"><button data-bind="click: $root.previousPage, disable : (currentPageIndex() == 0)"><</button>
                       Page&nbsp;<label data-bind="text: $root.currentPageIndex() + 1" class="inlineLabel"></label>
-                   <button data-bind="click: $root.nextPage, disable : (((currentPageIndex() + 1) * pageSize()) >= clothesProducts().length)">></button>
+                   <button data-bind="click: $root.nextPage, disable : (((currentPageIndex() + 1) * pageSize()) >= clothesProducts().length)">></button></p>
                   </td>
                 </tr>
             </tfoot>   

@@ -1,150 +1,30 @@
-﻿/*/*html {
-    background-color: #e2e2e2;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: #fff;
-    border-top: solid 10px #000;
-    color: #333;
-    font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    color: #333;
-    outline: none;
-    padding-left: 3px;
-    padding-right: 3px;
-    text-decoration: underline;
-}
-
-    a:link, a:visited,
-    a:active, a:hover {
-        color: #333;
-    }
-
-    a:hover {
-        background-color: #c7d1d6;
-    }
-
-header, footer, hgroup,
-nav, section {
-    display: block;
-}
-
-mark {
-    background-color: #a6dbed;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-
-
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-.clear-fix:after {
-    content: ".";
-    clear: both;
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-
-h1, h2, h3,
-h4, h5, h6 {
-    color: #000;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-h1 {
-    font-size: 2em;
-}
-
-h2 {
-    font-size: 1.75em;
-}
-
-h3 {
-    font-size: 1.2em;
-}
-
-h4 {
-    font-size: 1.1em;
-}
-
-h5, h6 {
-    font-size: 1em;
-}
-
-    h5 a:link, h5 a:visited, h5 a:active {
-        padding: 0;
-        text-decoration: none;
-    }
-
+﻿
 /* main layout
 
 ----------------------------------------------------------*/
+.hidenSelect {
+    outline : none;
+    overflow : hidden;
+    text-indent : 0.01px;
+    -ms-appearance: none;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: clip;
+    width: 150px;
+    color: black;
+    background-color: #efeeef;
+    border: none;
+}
+
 .inlineLabel {
     display: inline-block;
     font-size: 1em;
     font-weight: 400;
 }
-.inline {
-    display: inline;
+.centered {
     text-align: center;
-}
-
-.icon-step-backward {
-  background-position: -192px -72px;
-}
-.icon-step-forward {
-  background-position: -384px -72px;
-}
-[class^="icon-"],
-[class*=" icon-"] {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  margin-top: 1px;
-  *margin-right: .3em;
-  line-height: 14px;
-  vertical-align: text-top;
-  background-image: url("images/glyphicons-halflings.png");
-  background-position: 14px 14px;
-  background-repeat: no-repeat;
-}
-
-/* White icons with optional class, or on hover/focus/active states of certain elements */
-
-.icon-white,
-.nav-pills > .active > a > [class^="icon-"],
-.nav-pills > .active > a > [class*=" icon-"],
-.nav-list > .active > a > [class^="icon-"],
-.nav-list > .active > a > [class*=" icon-"],
-.navbar-inverse .nav > .active > a > [class^="icon-"],
-.navbar-inverse .nav > .active > a > [class*=" icon-"],
-.dropdown-menu > li > a:hover > [class^="icon-"],
-.dropdown-menu > li > a:focus > [class^="icon-"],
-.dropdown-menu > li > a:hover > [class*=" icon-"],
-.dropdown-menu > li > a:focus > [class*=" icon-"],
-.dropdown-menu > .active > a > [class^="icon-"],
-.dropdown-menu > .active > a > [class*=" icon-"],
-.dropdown-submenu:hover > a > [class^="icon-"],
-.dropdown-submenu:focus > a > [class^="icon-"],
-.dropdown-submenu:hover > a > [class*=" icon-"],
-.dropdown-submenu:focus > a > [class*=" icon-"] {
-  background-image: url("images/glyphicons-halflings-white.png");
 }
 
 .content-wrapper {
@@ -465,13 +345,15 @@ fieldset {
     label.checkbox {
         display: inline;
     }
-
-   
-
-    textarea {
-        font-family: inherit;
-        width: 500px;
+    
+ input {
+        border: 1px solid #e2e2e2;
+        margin: 0px 0 0px 0;
+        padding: 1px;
+        width: 150px;
+       
     }
+
     
         input:focus, textarea:focus {
             border: 1px solid #7ac0da;
@@ -480,7 +362,7 @@ fieldset {
         input[type="checkbox"] {
             background: transparent;
             border: inherit;
-            width: auto;
+            
         }
         
     input[type="submit"],
@@ -493,7 +375,7 @@ fieldset {
         font-weight: 600;
         padding: 7px;
         margin-right: 8px;
-        width: auto;
+       
     }
 
     /*td input[type="submit"],
@@ -576,12 +458,11 @@ th {
     text-align: left;
     border: none 0px;
     padding-left: 0;
-    width: 50px;
 }
 
     th a {
         display: block;
-        position: relative;
+        
         
     }
 
@@ -602,7 +483,6 @@ th {
     
     th.asc a:after, th.desc a:after {
 		display: block;
-        position: absolute;
         right: 0em;
         top: 0;
         font-size: 0.75em;
@@ -617,9 +497,8 @@ th {
 	}
 
 td {
-    padding: 0.25em 2em 0.25em 0em;
+    padding: 0.25em 1em 0.25em 0em;
     border: 0 none;
-    width: 50px;
 }
 
 tr.pager td {
@@ -795,19 +674,5 @@ tr.pager td {
             margin: 0;
         }
 }
-.hidenSelect {
-    outline : none;
-    overflow : hidden;
-    text-indent : 0.01px;
-    -ms-appearance: none;
-    -o-appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 0.01px;
-    text-overflow: clip;
-    width: 150px;
-    color: black;
-    background-color: #efeeef;
-    border: none;
-}
+
 /* END: Mobile Styles */
