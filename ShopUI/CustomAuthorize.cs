@@ -32,7 +32,8 @@ namespace ShopUI
 				string url = HttpContext.Current.Request.UrlReferrer.AbsolutePath;
 				if (url.EndsWith("Default.aspx"))
 				{
-					ServicesManager.Instance.FormsAuthenticationService.RedirectToLoginPage();
+					string fullyQualifiedUrl = HttpContext.Current.Request.UrlReferrer.GetLeftPart(UriPartial.Authority);
+					result.Headers.Location = new Uri(fullyQualifiedUrl + "/Login.aspx");
 				}
 			}
 			
