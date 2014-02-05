@@ -10,5 +10,6 @@ namespace ShopDTO
 	{
 		public string Password { get; set; }
 		public string UserEmailAddress { get; set; }
+		public bool IsAuthenticated { get; set; }
 	}
 }

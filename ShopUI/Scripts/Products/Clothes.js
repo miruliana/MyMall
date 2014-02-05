@@ -68,6 +68,7 @@ function InitBindings(viewModel) {
     viewModel.getAll();
     viewModel.getAllBrands();
     viewModel.getAllCategories();
+    viewModel.checkAuthenticated();
 }
 
 function ViewModel() {
@@ -97,7 +98,7 @@ function ViewModel() {
     self.topTweets = ko.observable();
     self.errorRegisterMessage = ko.observable("");
     self.errorLoginMessage = ko.observable("");
-    
+    self.isAuthenticated = ko.observable(false);
     self.resetAddInput = function() {
         $('#code2').val("");
         $('#name2').val("");
@@ -126,6 +127,13 @@ function ViewModel() {
               });
     };
 
+    self.checkAuthenticated = function () {
+        $.getJSON(accountURI + 'Get', function (data) {
+            self.isAuthenticated(data.IsAuthenticated);
+        });
+     
+    };
+    
     self.getAll = function () {
         self.errorMessage("");
         self.clothesProducts.removeAll();

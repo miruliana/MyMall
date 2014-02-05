@@ -13,5 +13,6 @@ namespace ShopDAL.Model
 	{
 		public string Password { get; set; }
 		public string UserEmailAddress { get; set; }
+	
 	}
 }

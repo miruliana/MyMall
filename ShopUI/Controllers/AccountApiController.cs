@@ -61,9 +61,14 @@ namespace ShopUI.Controllers
 		public HttpResponseMessage LogOut()
 		{
 			Services.FormsAuthenticationService.SignOut();
-			//if (HttpContextFactory.Current != null)
-			//	HttpContextFactory.Current.Session["User"] = null;
 			return Request.CreateResponse(HttpStatusCode.OK);
+		}
+		public UserDTO Get()
+		{
+			UserDTO user = new UserDTO();
+			user.Name = User.Identity.Name;
+			user.IsAuthenticated = User.Identity.IsAuthenticated;
+			return user;
 		}
 		
 	}
