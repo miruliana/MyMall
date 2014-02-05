@@ -17,7 +17,22 @@ ko.validation.rules['mustBeNumberOrDecimal'] = {
 };
 ko.validation.registerExtenders();
 
+ko.validation.rules['mustBeEmail'] = {
+    validator: function (val, flag) {
+        return TestValidEmail(val, flag);
+    },
+    message: 'The field must be valid email!'
+};
+ko.validation.registerExtenders();
 
+function User( id, username, email, password, confirmationPassword) {
+    var self = this;
+    self.Id = ko.observable(id);
+    self.Name = ko.observable(username).extend({ required: true, maxLength: 25, minLength: 2 });
+    self.UserEmailAddress = ko.observable(email).extend({ mustBeEmail: true });
+    self.Password = ko.observable(password).extend({ required: true, maxLength: 25, minLength: 6, equal: User().ConfirmationPassword });
+    self.ConfirmationPassword = ko.observable(confirmationPassword).extend({ required: true, maxLength: 25, minLength: 6, equal: User().Password });
+}
 function Brand(id, name) {
     var self = this;
     self.Id = ko.observable(id);
@@ -57,10 +72,12 @@ function InitBindings(viewModel) {
 
 function ViewModel() {
     var self = this;
+    var baseUrl = location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
     var baseURI = "/api/ClothesApi/";
     var baseBrandsURI = "/api/BrandsApi/";
     var baseCategoryURI = "/api/CategoryApi/";
     var baseDestinationURI = "/api/DestinationApi/";
+    var accountURI = "/api/AccountApi/";
     self.clothesProducts = ko.observableArray();
     self.clothes = ko.observable();
     self.status = ko.observable();
@@ -71,13 +88,16 @@ function ViewModel() {
     self.myBrandSelectedOption = ko.observable();
     self.myCategorySelectedOption = ko.observable();
     self.errorMessage = ko.observable("");
+    self.users = ko.observableArray();
     //pagination
     self.currentPage = ko.observable();
     self.pageSize = ko.observable(10);
     self.currentPageIndex = ko.observable(0);
     self.resultData = ko.observable();
     self.topTweets = ko.observable();
-
+    self.errorRegisterMessage = ko.observable("");
+    self.errorLoginMessage = ko.observable("");
+    
     self.resetAddInput = function() {
         $('#code2').val("");
         $('#name2').val("");
@@ -286,6 +306,75 @@ function ViewModel() {
             }
         }
     };
+    self.logout = function () {
+        
+        $.ajax({
+            url: accountURI + 'LogOut',
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function () {
+                window.location(baseUrl);
+            }
+        })
+          .fail(
+              function (xhr, textStatus, err) {
+                  self.errorLoginMessage("\n" + xhr.responseText.replace(/\"/g, ''));
+              });
+    };
+    self.login = function () {
+        self.errorLoginMessage("");
+        var user = {
+            Name: $('#username').val(),
+            Password: $('#password').val(),
+            UserEmailAddress: ""
+        };
+        $.ajax({
+            url: accountURI + 'Login' ,
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON(user), 
+            success: function () {
+                self.errorLoginMessage("");
+                window.location(baseUrl);
+            }
+        })
+          .fail(
+              function (xhr, textStatus, err) {
+                  self.errorLoginMessage("\n" + xhr.responseText.replace(/\"/g, ''));
+              });
+    };
+    self.register = function () {
+        var user = {
+            Name: $('#username1').val(),
+            Password: $('#password1').val(),
+            UserEmailAddress: $('#email1').val()
+        };
+        var message = { val: "" };
+        if (!isValidAccount(user.Name, user.UserEmailAddress, user.Password,$('#password2').val(), message)) {
+            self.errorRegisterMessage(message.val);
+            return;
+        }
+    
+        $.ajax({
+            url: accountURI + 'Register',
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON(user),
+            success: function () {
+                self.errorRegisterMessage("");
+                window.location(baseUrl);
+            }
+        })
+          .fail(
+              function (xhr, textStatus, err) {
+                  self.errorRegisterMessage("\n" + xhr.responseText.replace(/\"/g, ''));
+                  });
+
+    };
+   
 };
 
 var viewModel = new ViewModel();

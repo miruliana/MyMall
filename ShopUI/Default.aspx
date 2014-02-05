@@ -1,8 +1,28 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShopUI._Default" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h3>Clothes Management:</h3>
+     <header>
+        <div class="content-wrapper">
+          
+            <div class="float-left">
+                <section id="login" >
+                            <ul>
+                                <li><a id="loginLink" runat="server" href="~/Account/LogIn.aspx" data-bind ="click : logout">Log out</a></li>
+                            </ul>
+                </section>
+                <nav>
+                   <ul id="menu">
+                        <li><a id="clothesLink" runat="server" href="~/">Clothes</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+     <div id="body">
+     <section class="content-wrapper main-content" >
+    <%--<p  class="centered" style="color: red">Unauthorized access!</p>--%>
     <div id ="viewTab">
+         <h3>Clothes Management:</h3>
         <div>
         <p id ="status" class="errorMessage"  data-bind="text: errorMessage"></p></div>
           
@@ -52,7 +72,8 @@
     <div>
         
     </div>
-
+   </section>
+   </div>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="HeadContent">
     </asp:Content>

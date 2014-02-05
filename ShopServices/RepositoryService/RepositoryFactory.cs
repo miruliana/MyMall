@@ -20,6 +20,7 @@ namespace ShopDALRepository
         private ICosmeticRepository cosmeticRepository;
         private IClothesRepository clothesRepository;
 	    private ICategoryRepository categoryRepository;
+	    private IUserRepository userRepository;
 
         public RepositoryFactory(bool boolParameter) { }
         public RepositoryFactory()
@@ -82,7 +83,18 @@ namespace ShopDALRepository
                 return rpf.cosmeticRepository;
             }
         }
-      
+		public IUserRepository UserRepository
+		{
+			get
+			{
+				if (rpf.userRepository == null)
+				{
+					rpf.userRepository = WindsorService.Resolve<IUserRepository>();
+					SaveToHttpContext();
+				}
+				return rpf.userRepository;
+			}
+		}
 
         private void SaveToHttpContext()
         {

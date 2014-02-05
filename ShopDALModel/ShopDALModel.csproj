@@ -72,9 +72,18 @@
     <Compile Include="Migrations\201401291625210_v4.Designer.cs">
       <DependentUpon>201401291625210_v4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402031549280_test.cs" />
+    <Compile Include="Migrations\201402031549280_test.Designer.cs">
+      <DependentUpon>201402031549280_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031552056_users.cs" />
+    <Compile Include="Migrations\201402031552056_users.Designer.cs">
+      <DependentUpon>201402031552056_users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Brand.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Model\Clothes.cs" />
     <Compile Include="Model\Colour.cs" />
     <Compile Include="Model\Cosmetic.cs" />
@@ -95,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401291625210_v4.resx">
       <DependentUpon>201401291625210_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031549280_test.resx">
+      <DependentUpon>201402031549280_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031552056_users.resx">
+      <DependentUpon>201402031552056_users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

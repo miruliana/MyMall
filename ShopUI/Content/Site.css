@@ -51,7 +51,8 @@
 }
 
     .main-content {
-        padding-left: 10px;
+        padding-left: 15%;
+        padding-right: 15%;
         padding-top: 30px;
     }
 
@@ -276,7 +277,7 @@ aside {
 #loginForm {
     border-right: solid 2px #c8c8c8;
     float: left;
-    width: 55%;
+    width: 99%;
 }
 
     #loginForm .validation-error {
@@ -350,7 +351,7 @@ fieldset {
         border: 1px solid #e2e2e2;
         margin: 0px 0 0px 0;
         padding: 1px;
-        width: 150px;
+        width: 131px;
        
     }
 
@@ -375,8 +376,8 @@ fieldset {
         font-weight: 600;
         padding: 7px;
         margin-right: 8px;
-       
-    }
+    height: 39px;
+}
 
     /*td input[type="submit"],
     td input[type="button"],
@@ -447,10 +448,15 @@ input[type="checkbox"].input-validation-error {
 /* tables
 ----------------------------------------------------------*/
 table {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
     border-collapse: collapse;
     border-spacing: 0;
     margin-top: 0.75em;
-    border: 1 none;
+    width: 331px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 th {

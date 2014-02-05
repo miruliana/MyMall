@@ -29,6 +29,13 @@
         <inner>${iRepoOfCategory}</inner>
       </parameters>
     </component>
+    <component id="user-service"
+               service="ShopServices.Interfaces.IUserService, ShopServices"
+               type="ShopServices.Services.UserService, ShopServices">
+      <parameters>
+        <inner>${iRepoOfUsers}</inner>
+      </parameters>
+    </component>
     <component id="iRepoOfClothes" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Clothes, ShopDALModel]], ShopDALRepository"
               type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Clothes, ShopDALModel]], ShopDALRepository">
     </component>
@@ -41,9 +48,15 @@
     <component id="iRepoOfCategory" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.Category, ShopDALModel]], ShopDALRepository"
                  type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.Category, ShopDALModel]], ShopDALRepository">
     </component>
+    <component id="iRepoOfUsers" service="ShopDALRepository.Interfaces.IRepository`1[[ShopDAL.Model.User, ShopDALModel]], ShopDALRepository"
+                 type="ShopDALRepository.Repositories.Repository`1[[ShopDAL.Model.User, ShopDALModel]], ShopDALRepository">
+    </component>
     <component id="genericService" service="ShopServices.Interfaces.IBaseService`1, ShopServices"
                type="ShopServices.Services.Service`1, ShopServices">
     </component>
+    <component id="user-repository"
+            service="ShopDALRepository.Interfaces.IUserRepository, ShopDALRepository"
+            type="ShopDALRepository.Repositories.UserRepository, ShopDALRepository"/>
     <component id="clothesFake-repository"
              service="ShopDALRepository.Interfaces.IClothesFakeRepository, ShopDALRepository"
              type="ShopDALRepository.Repositories.ClothesFakeRepository, ShopDALRepository"/>

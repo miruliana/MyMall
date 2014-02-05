@@ -41,6 +41,6 @@ namespace ShopDAL.Model
 		public DbSet<ProductType> ProductTypes { get; set; }
 		public DbSet<CosmeticBrand> CosmeticBrand { get; set; }
 		public DbSet<CosmeticCategory> CosmeticCategory { get; set; }
-
+		public DbSet<User> Users { get; set; }
     }
 }

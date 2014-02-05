@@ -1,6 +1,8 @@
 ﻿using ShopDALRepository;
 using ShopDALRepository.Interfaces;
 using ShopDALRepository.Repositories;
+using ShopServices.AuthenticationService;
+using ShopServices.AuthenticationService.Interfaces;
 using ShopServices.Interfaces;
 using ShopServices.Windsor;
 using System;
@@ -18,6 +20,9 @@ namespace ShopServices.Services
         private ICosmeticService cosmeticService;
         private IBrandService brandService;
 	    private ICategoryService categoryService;
+	    private IUserService userService;
+	    private IFormsAuthenticationService formsAuthenticationService;
+	    private IMembershipService membershipService;
 
         public ClothesService ClothesService
         {
@@ -56,9 +61,40 @@ namespace ShopServices.Services
 			get
 			{
 				if (categoryService != null) return categoryService as CategoryService;
-				categoryService = WindsorService.Resolve<ICategoryService>(WindsorService.Resolve<ICategoryService>());
+				categoryService = WindsorService.Resolve<ICategoryService>(WindsorService.Resolve<ICategoryRepository>());
 				SaveToContext();
 				return categoryService as CategoryService;
+			}
+		}
+		public UserService UserService
+		{
+			get
+			{
+				if (userService != null) return userService as UserService;
+				userService = WindsorService.Resolve<IUserService>(WindsorService.Resolve<IUserRepository>());
+				SaveToContext();
+				return userService as UserService;
+			}
+		}
+		public IFormsAuthenticationService FormsAuthenticationService
+		{
+			get
+			{
+				if (formsAuthenticationService != null) return formsAuthenticationService as IFormsAuthenticationService;
+				formsAuthenticationService = new FormsAuthenticationService();
+				SaveToContext();
+				return formsAuthenticationService;
+			}
+		}
+
+		public IMembershipService MembershipService
+		{
+			get
+			{
+				if (membershipService != null) return membershipService as IMembershipService;
+				membershipService = new AccountMembershipService();
+				SaveToContext();
+				return membershipService;
 			}
 		}
 

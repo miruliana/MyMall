@@ -22,15 +22,6 @@ namespace ShopUI {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
-        /// clothesLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor clothesLink;
-        
-        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>
