@@ -11,7 +11,14 @@ namespace ShopUI
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			if (!IsPostBack)
+			{
+				if (!User.Identity.IsAuthenticated)
+				{
+					Response.Redirect("Login.aspx");
+				}
+			}
 		}
+		
 	}
 }
