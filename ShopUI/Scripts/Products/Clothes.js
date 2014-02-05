@@ -68,7 +68,7 @@ function InitBindings(viewModel) {
     viewModel.getAll();
     viewModel.getAllBrands();
     viewModel.getAllCategories();
-    viewModel.checkAuthenticated();
+ //   viewModel.checkAuthenticated();
 }
 
 function ViewModel() {
@@ -98,7 +98,7 @@ function ViewModel() {
     self.topTweets = ko.observable();
     self.errorRegisterMessage = ko.observable("");
     self.errorLoginMessage = ko.observable("");
-    self.isAuthenticated = ko.observable(false);
+   // self.isAuthenticated = ko.observable(false);
     self.resetAddInput = function() {
         $('#code2').val("");
         $('#name2').val("");
@@ -127,12 +127,12 @@ function ViewModel() {
               });
     };
 
-    self.checkAuthenticated = function () {
-        $.getJSON(accountURI + 'Get', function (data) {
-            self.isAuthenticated(data.IsAuthenticated);
-        });
+    //self.checkAuthenticated = function () {
+    //    $.getJSON(accountURI + 'Get', function (data) {
+    //        self.isAuthenticated(data.IsAuthenticated);
+    //    });
      
-    };
+    //};
     
     self.getAll = function () {
         self.errorMessage("");
@@ -322,7 +322,7 @@ function ViewModel() {
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function () {
-                window.location(baseUrl);
+                window.location.href = baseUrl;
             }
         })
           .fail(
@@ -345,7 +345,7 @@ function ViewModel() {
             data: ko.toJSON(user), 
             success: function () {
                 self.errorLoginMessage("");
-                window.location(baseUrl + "Default.aspx");
+                window.location.href = baseUrl + "Default.aspx";
             }
         })
           .fail(
@@ -373,7 +373,7 @@ function ViewModel() {
             data: ko.toJSON(user),
             success: function () {
                 self.errorRegisterMessage("");
-                window.location(baseUrl + "Default.aspx");
+                window.location.href = baseUrl + "Default.aspx";
             }
         })
           .fail(

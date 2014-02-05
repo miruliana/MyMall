@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
      <header>
-        <div class="content-wrapper"  data-bind =" visible : isAuthenticated()">
+        <div class="content-wrapper"  >
           
             <div class="float-left">
                 <section id="login" >
@@ -21,7 +21,7 @@
      <div id="body">
      <section class="content-wrapper main-content" >
     <%--<p  class="centered" style="color: red">Unauthorized access!</p>--%>
-    <div id ="viewTab" data-bind =" visible : isAuthenticated()">
+    <div id ="viewTab" >
          <h3>Clothes Management:</h3>
         <div>
         <p id ="status" class="errorMessage"  data-bind="text: errorMessage"></p></div>
