@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using ShopDTO;
 using ShopServices.Services;
+
 
 namespace ShopUI.Controllers
 {
@@ -23,7 +25,15 @@ namespace ShopUI.Controllers
 				if (Services.MembershipService.ValidateUser(user.Name, user.Password))
 				{
 					Services.FormsAuthenticationService.SignIn(user.Name, false);
-					return Request.CreateResponse(HttpStatusCode.OK);
+				
+					//if (HttpContextFactory.Current != null)
+					//	HttpContextFactory.Current.Session["User"] = user;
+					var response = Request.CreateResponse(HttpStatusCode.OK);
+					string fullyQualifiedUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+					response.Headers.Location = new Uri(fullyQualifiedUrl + "/Default.aspx");
+					//HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+					//response.Headers.Location = new Uri(HttpContext.Current.Request.UrlReferrer.Scheme + "://" + HttpContext.Current.Request.UrlReferrer.Authority + "/Default.aspx");
+					return response;
 				}
 				ModelState.AddModelError("", "The user name or password provided is incorrect.");
 			}
@@ -51,6 +61,8 @@ namespace ShopUI.Controllers
 		public HttpResponseMessage LogOut()
 		{
 			Services.FormsAuthenticationService.SignOut();
+			//if (HttpContextFactory.Current != null)
+			//	HttpContextFactory.Current.Session["User"] = null;
 			return Request.CreateResponse(HttpStatusCode.OK);
 		}
 		

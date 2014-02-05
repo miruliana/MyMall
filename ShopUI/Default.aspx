@@ -7,12 +7,12 @@
             <div class="float-left">
                 <section id="login" >
                             <ul>
-                                <li><a id="loginLink" runat="server" href="~/Account/LogIn.aspx" data-bind ="click : logout">Log out</a></li>
+                                <li><a id="loginLink" runat="server" href="~/LogIn.aspx" data-bind ="click : logout">Log out</a></li>
                             </ul>
                 </section>
                 <nav>
                    <ul id="menu">
-                        <li><a id="clothesLink" runat="server" href="~/">Clothes</a></li>
+                        <li><a id="clothesLink" runat="server" href="~/Default.aspx">Clothes</a></li>
                     </ul>
                 </nav>
             </div>

@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using ShopServices.Services;
 using ShopServices.Windsor;
 
 
@@ -23,7 +24,13 @@ namespace ShopUI
 				routeTemplate: "api/{controller}/{action}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 				);
+			RouteTable.Routes.MapHttpRoute(
+				name: "LoginApi",
+				routeTemplate: "api/AccountApi/LogIn/{id}",
+				defaults: new { id = RouteParameter.Optional }
+				);
 			InstallWindsor();
+		
 		}
 		
 		public void InstallWindsor()
@@ -32,7 +39,7 @@ namespace ShopUI
 			WindsorService.AddAssemblyResourceInstaller("ShopServices", "WindsorConfiguration.xml"); 
 			WindsorService.Install();
 		}
-
+	
 		void Application_End(object sender, EventArgs e)
 		{
 			//  Code that runs on application shutdown

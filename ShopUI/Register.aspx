@@ -7,8 +7,8 @@
             <div class="float-left">
                 <section id="login">
                             <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                                <li><a id="registerLink" runat="server" href="~/Register.aspx">Register</a></li>
+                                <li><a id="loginLink" runat="server" href="~/Login.aspx">Log in</a></li>
                             </ul>
                 </section>
             </div>

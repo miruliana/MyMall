@@ -10,5 +10,6 @@ namespace ShopServices.AuthenticationService.Interfaces
 	{
 		void SignIn(string userName, bool createPersistentCookie);
 		void SignOut();
+		void RedirectToLoginPage();
 	}
 }

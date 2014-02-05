@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-
-});
+  
+    });
 
 ko.validation.init({
     decorateElement: true,
@@ -337,7 +337,7 @@ function ViewModel() {
             data: ko.toJSON(user), 
             success: function () {
                 self.errorLoginMessage("");
-                window.location(baseUrl);
+                window.location(baseUrl + "Default.aspx");
             }
         })
           .fail(
@@ -365,7 +365,7 @@ function ViewModel() {
             data: ko.toJSON(user),
             success: function () {
                 self.errorRegisterMessage("");
-                window.location(baseUrl);
+                window.location(baseUrl + "Default.aspx");
             }
         })
           .fail(
@@ -374,6 +374,7 @@ function ViewModel() {
                   });
 
     };
+  
    
 };
 

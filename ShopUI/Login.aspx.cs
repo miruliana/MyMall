@@ -13,5 +13,10 @@ namespace ShopUI.Account
 		{
 
 		}
+
+		protected void Login_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("Default.aspx");
+		}
 	}
 }

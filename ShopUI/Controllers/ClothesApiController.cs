@@ -9,6 +9,7 @@ using ShopDTO;
 
 namespace ShopUI.Controllers
 {
+	[CustomAuthorize]
 	public class ClothesApiController : ApiController
 	{
 		public ServicesManager Services
@@ -16,7 +17,7 @@ namespace ShopUI.Controllers
 			get { return ServicesManager.Instance; }
 		}
 		// GET api/<controller>
-		[Authorize]
+	
 		public IEnumerable<ClothesDTO> Get()
 		{
 			IEnumerable<ClothesDTO> clothes = Services.ClothesService.GetAll();
@@ -29,7 +30,6 @@ namespace ShopUI.Controllers
 		}
 
 		// GET api/<controller>/5
-		[Authorize]
 		public ClothesDTO GetById(int id)
 		{
 			ClothesDTO product = Services.ClothesService.GetById(id);
@@ -39,7 +39,7 @@ namespace ShopUI.Controllers
 			}
 			return product;
 		}
-		[Authorize]
+		
 		public HttpResponseMessage Post([FromBody] ClothesDTO product)
 		{
 			product = Services.ClothesService.Insert(product);
@@ -50,7 +50,7 @@ namespace ShopUI.Controllers
 
 		}
 		// PUT api/<controller>/5
-		[Authorize]
+	
 		public void Put(int id, ClothesDTO product)
 		{
 			product.Id = id;
@@ -58,7 +58,7 @@ namespace ShopUI.Controllers
 		}
 
 		// DELETE api/<controller>/5
-		[Authorize]
+	
 		public void Delete(int id)
 		{
 			Services.ClothesService.Delete(id);
