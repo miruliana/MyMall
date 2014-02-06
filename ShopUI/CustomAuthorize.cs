@@ -12,6 +12,20 @@ namespace ShopUI
 
 	public class CustomAuthorize : System.Web.Http.AuthorizeAttribute
 	{
+		public override void OnAuthorization(HttpActionContext actionContext)
+		{
+			//if (actionContext.Request.RequestUri.Scheme != Uri.UriSchemeHttps)
+			//{
+			//	actionContext.Response = new HttpResponseMessage(System.Net.HttpStatusCode.Forbidden)
+			//	{
+			//		ReasonPhrase = "HTTPS Required"
+			//	};
+			//}
+			//else
+			//{
+			//	base.OnAuthorization(actionContext);
+			//}
+		}
 		protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
 		{
 			if (actionContext == null)

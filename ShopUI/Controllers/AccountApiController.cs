@@ -67,7 +67,7 @@ namespace ShopUI.Controllers
 		{
 			UserDTO user = new UserDTO();
 			user.Name = User.Identity.Name;
-			user.IsAuthenticated = User.Identity.IsAuthenticated;
+			
 			return user;
 		}
 		
